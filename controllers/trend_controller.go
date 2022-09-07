@@ -10,10 +10,10 @@ import (
 func GetTrend(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Request.URL.Query().Get("id"))
 	trend := models.TrendMini{ID: id, Articles: []models.ArticleMini{}}
-	SampleArticle.ID = 1
+	article := getArticleDetailByVariationId(7929)
 	for i := 0; i < 20; i++ {
-		trend.Articles = append(trend.Articles, SampleArticle)
-		SampleArticle.ID++
+		trend.Articles = append(trend.Articles, *article)
+		article.ID++
 	}
 	c.JSON(http.StatusOK, trend)
 }

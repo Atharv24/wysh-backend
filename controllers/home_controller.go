@@ -8,6 +8,7 @@ import (
 
 func GetHome(c *gin.Context) {
 	var trends []models.TrendMini
+	article := getArticleDetailByVariationId(7929)
 
 	for i := 0; i < 5; i++ {
 		trend := models.TrendMini{
@@ -16,22 +17,12 @@ func GetHome(c *gin.Context) {
 			Articles: []models.ArticleMini{},
 		}
 		for j := 0; j < 5; j++ {
-			trend.Articles = append(trend.Articles, SampleArticle)
-			SampleArticle.ID++
+			trend.Articles = append(trend.Articles, *article)
+			article.ID++
 		}
 		trends = append(trends, trend)
 	}
 
 	obj := models.HomeResObj{Trends: trends}
 	c.JSON(http.StatusOK, obj)
-}
-
-var SampleArticle = models.ArticleMini{
-	ID:           1,
-	Title:        "AABC",
-	Brand:        "AS",
-	CurrentPrice: 1000,
-	BasePrice:    1100,
-	ImageLinks:   "",
-	ImageUrl:     "",
 }

@@ -3,10 +3,19 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"strconv"
+	"wysh-app/models"
 )
 
 func GetArticleDetail(c *gin.Context) {
-	SampleArticle.ID, _ = strconv.Atoi(c.Request.URL.Query().Get("id"))
-	c.JSON(http.StatusOK, SampleArticle)
+	//articleId, _ := strconv.Atoi(c.Request.URL.Query().Get("id"))
+
+	article := models.ArticleMini{
+		ID:           0,
+		Name:         "",
+		Brand:        "",
+		CurrentPrice: 0,
+		BasePrice:    0,
+		ImageUrl:     "",
+	}
+	c.JSON(http.StatusOK, article)
 }

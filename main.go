@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	//controllers.ConnectDB()
+	controllers.ConnectDB()
 
 	router := setupRouter()
 	err := router.Run(":8080")
